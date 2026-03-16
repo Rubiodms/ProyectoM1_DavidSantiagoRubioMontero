@@ -30,12 +30,14 @@ header{
     text-align: center; 
 }
 
+
 main{
     flex: 1;
     display: flex;
-    flex-direction: row;
-
+    flex-direction: column;
+    gap: 20px;
 }
+
 
 footer{
     background-color: #f0f8ff;
@@ -47,6 +49,12 @@ footer{
 /* ==========================================================================
    CAJAS-COLOR // EN ESTAS CAJAS SE VERAN LOS COLORES DE LAS PALETAS
 ========================================================================== */
+
+#contenedor-cajas{
+    display: flex;
+    flex-direction: row;
+}
+
 .caja-color{
     background-color: rgb(222, 184, 184); 
     padding: 10px;        
