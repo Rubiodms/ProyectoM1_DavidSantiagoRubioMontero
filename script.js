@@ -13,12 +13,19 @@ seleccionador.addEventListener('change', function() {
 
     } else if (this.value === "8-colores") {
         // Lógica para llegar a 8
-        for (let i = hijos_actuales; i < 8; i++) {
+        if (hijos_actuales == 6) {
+          for (let i = hijos_actuales; i < 8; i++) {
             let nueva_caja = document.createElement('div'); // CREADA ADENTRO
             nueva_caja.innerHTML = '<p>HSL:<br>RGBA:</p>';
             nueva_caja.classList.add("caja-color");
             contenedor_cajas.appendChild(nueva_caja);
+            }  
+        }else{
+            for (let i = hijos_actuales; i > 8; i--) {
+            contenedor_cajas.removeChild(contenedor_cajas.lastElementChild);
+            }
         }
+        
 
     } else if (this.value === "9-colores") {
         // Lógica para llegar a 9
