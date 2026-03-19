@@ -1,6 +1,10 @@
+//LOGICA PARA SELECCION DE PALETAS
+
+//VARIABLES CONSTANTES
 const seleccionador = document.getElementById('boton-seleccionador');
 const paletas = document.getElementsByClassName('caja-color');
 const contenedor_cajas = document.getElementById('contenedor-cajas'); //selecionamos el contenedor de las cajas del DOM
+const boton = document.getElementById('boton');
 
 seleccionador.addEventListener('change', function() {
     let hijos_actuales = contenedor_cajas.childElementCount;
@@ -37,3 +41,10 @@ seleccionador.addEventListener('change', function() {
         }
     }
 });
+//LOGICA PARA RANDOMIZADOR DE COLORES
+
+//RANDOMIZADOR RGBA
+var aleatorio_rgba = [];
+
+var alpha = Math.random().toFixed(2)//se toman 2 numeros decimales despues de la coma (,)
+
