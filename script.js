@@ -48,3 +48,9 @@ var aleatorio_rgba = [];
 
 var alpha = Math.random().toFixed(2)//se toman 2 numeros decimales despues de la coma (,)
 
+for (let i = 0; i >= aleatorio_rgba.length && i < 3; i++) {
+    
+    color_random = Math.floor(Math.random()*255);
+    aleatorio_rgba.push(color_random);
+    console.log(aleatorio_rgba);
+}
