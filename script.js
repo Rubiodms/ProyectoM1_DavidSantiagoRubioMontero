@@ -89,42 +89,65 @@ function rgbToHsl(r, g, b) {
     return `hsl(${Math.round(h * 360)}, ${Math.round(s * 100)}%, ${Math.round(l * 100)}%)`;
 }
 
-// 3. Recorremos la colección de cajas
-boton.addEventListener('click', function(){
-    
+//Logica de boton actualizada
+boton.addEventListener('click', function() {
     const textoOriginal = this.innerText;
     this.innerText = "Paleta generada!!!!!";
 
     for (let i = 0; i < paletas.length; i++) {
-        // Generamos un color nuevo para cada vuelta del bucle
-        let nuevoColor = generarColor();
-        
-        // Aplicamos el color a la paleta actual [i]
-        paletas[i].style.backgroundColor = nuevoColor;
-        
-        
-        // Mostrar el código en el texto del párrafo
-        let parrafo = paletas[i].querySelector('p');
-        if (parrafo) {
-            parrafo.innerText = `${nuevoColor}`;
-            parrafo.classList.add('textcolor');
-            //quiero que se imprima el hex abajo de este 
-        }
+        // Generamos números base
+        let r = Math.floor(Math.random() * 256);
+        let g = Math.floor(Math.random() * 256);
+        let b = Math.floor(Math.random() * 256);
+
+        // Guardamos los valores en la caja para que el selector de formato pueda usarlos
+        paletas[i].dataset.r = r;
+        paletas[i].dataset.g = g;
+        paletas[i].dataset.b = b;
+
+        // Pintamos la caja y los textos
+        actualizarInterfazCaja(paletas[i]);
     }
 
     setTimeout(() => {
         this.innerText = textoOriginal;
     }, 500);
- 
 });
 
-//LOGICA DE SELECCION DE FORMATOS
-formatos.addEventListener('change', function(){
-    if (this.value === "btn-hsl") {
-      //aca deberia ir la transformacion de rgba a hsl
+function actualizarInterfazCaja(caja) {
+    const r = parseInt(caja.dataset.r);
+    const g = parseInt(caja.dataset.g);
+    const b = parseInt(caja.dataset.b);
+    const formatoSeleccionado = formatos.value; // El select de RGBA/HSL
+
+    let textoFormato = "";
+    let hex = rgbToHex(r, g, b);
+
+    // Decidimos qué mostrar arriba
+    if (formatoSeleccionado === "btn-hsl") {
+        textoFormato = rgbToHsl(r, g, b);
+    } else {
+        textoFormato = `rgba(${r}, ${g}, ${b}, 1)`;
     }
 
-    
-    
-    
+    // Aplicamos el color de fondo (siempre usamos el formato seleccionado para el estilo)
+    caja.style.backgroundColor = textoFormato;
+
+    // Imprimimos en el párrafo
+    let parrafo = caja.querySelector('p');
+    if (parrafo) {
+        parrafo.classList.add('textcolor');
+        // Usamos innerHTML para el salto de línea y la negrita en HEX
+        parrafo.innerHTML = `${textoFormato}<br><strong>${hex}</strong>`;
+    }
+}
+
+// LOGICA DE SELECCION DE FORMATOS
+// Cuando el usuario cambie de RGBA a HSL, actualizamos todas las cajas sin cambiar el color
+formatos.addEventListener('change', function() {
+    for (let i = 0; i < paletas.length; i++) {
+        if (paletas[i].dataset.r) {
+            actualizarInterfazCaja(paletas[i]);
+        }
+    }
 });
