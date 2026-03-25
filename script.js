@@ -48,9 +48,18 @@ var aleatorio_rgba = [];
 
 var alpha = Math.random().toFixed(2)//se toman 2 numeros decimales despues de la coma (,)
 
-for (let i = 0; i >= aleatorio_rgba.length && i < 3; i++) {
+function color_random(){
+ for (let i = 0; i >= aleatorio_rgba.length && i < 3; i++) {
     
     color_random = Math.floor(Math.random()*255);
     aleatorio_rgba.push(color_random);
     console.log(aleatorio_rgba);
+    }
+}
+
+
+// For que recorre las paletas
+for(let i = 0; i <= contenedor_cajas.childElementCount; i++ ){
+    color_random();
+    paletas.style.backgroundColor = `rgba(${aleatorio_rgba[0]},${aleatorio_rgba[1]},${aleatorio_rgba[2]},${alpha})`;
 }
