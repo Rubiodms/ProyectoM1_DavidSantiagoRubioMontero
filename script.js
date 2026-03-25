@@ -21,6 +21,10 @@ seleccionador.addEventListener('change', function() {
           for (let i = hijos_actuales; i < 8; i++) {
             let nueva_caja = document.createElement('div'); // CREADA ADENTRO
             nueva_caja.innerHTML = '<p>HSL:<br>RGBA:</p>';
+            let parrafo = nueva_caja.querySelector('p');
+            if (parrafo) {
+                parrafo.classList.add('textcolor'); // Cambia por el nombre real de tu clase
+            }
             nueva_caja.classList.add("caja-color");
             contenedor_cajas.appendChild(nueva_caja);
             }  
@@ -36,6 +40,10 @@ seleccionador.addEventListener('change', function() {
         for (let i = hijos_actuales; i < 9; i++) {
             let nueva_caja = document.createElement('div'); // CREADA ADENTRO
             nueva_caja.innerHTML = '<p>HSL:<br>RGBA:</p>';
+            let parrafo = nueva_caja.querySelector('p');
+            if (parrafo) {
+                parrafo.classList.add('textcolor'); // Cambia por el nombre real de tu clase
+            }
             nueva_caja.classList.add("caja-color");
             contenedor_cajas.appendChild(nueva_caja);
         }
@@ -44,22 +52,33 @@ seleccionador.addEventListener('change', function() {
 //LOGICA PARA RANDOMIZADOR DE COLORES
 
 //RANDOMIZADOR RGBA
-var aleatorio_rgba = [];
+// 1. Función para generar UN color RGBA aleatorio
+function generarColor() {
+    let r = Math.floor(Math.random() * 256);
+    let g = Math.floor(Math.random() * 256);
+    let b = Math.floor(Math.random() * 256);
+    let a = Math.random().toFixed(2);
+    return `rgba(${r}, ${g}, ${b}, ${a})`;
+}
 
-var alpha = Math.random().toFixed(2)//se toman 2 numeros decimales despues de la coma (,)
 
-function color_random(){
- for (let i = 0; i >= aleatorio_rgba.length && i < 3; i++) {
-    
-    color_random = Math.floor(Math.random()*255);
-    aleatorio_rgba.push(color_random);
-    console.log(aleatorio_rgba);
+
+// 3. Recorremos la colección de cajas
+boton.addEventListener('click', function(){
+    for (let i = 0; i < paletas.length; i++) {
+        // Generamos un color nuevo para cada vuelta del bucle
+        let nuevoColor = generarColor();
+        
+        // Aplicamos el color a la paleta actual [i]
+        paletas[i].style.backgroundColor = nuevoColor;
+        
+        // Opcional: Mostrar el código en el texto del párrafo
+        let parrafo = paletas[i].querySelector('p');
+        if (parrafo) {
+            parrafo.innerText = `Color: ${nuevoColor}`;
+            parrafo.classList.add('textcolor');
+        }
     }
-}
 
-
-// For que recorre las paletas
-for(let i = 0; i <= contenedor_cajas.childElementCount; i++ ){
-    color_random();
-    paletas.style.backgroundColor = `rgba(${aleatorio_rgba[0]},${aleatorio_rgba[1]},${aleatorio_rgba[2]},${alpha})`;
-}
+    
+});
