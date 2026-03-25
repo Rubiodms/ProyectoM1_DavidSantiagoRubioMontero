@@ -5,6 +5,7 @@ const seleccionador = document.getElementById('boton-seleccionador');
 const paletas = document.getElementsByClassName('caja-color');
 const contenedor_cajas = document.getElementById('contenedor-cajas'); //selecionamos el contenedor de las cajas del DOM
 const boton = document.getElementById('boton');
+const formatos = document.getElementById('btn-formato');
 
 seleccionador.addEventListener('change', function() {
     let hijos_actuales = contenedor_cajas.childElementCount;
@@ -65,11 +66,10 @@ function generarColor() {
 
 // 3. Recorremos la colección de cajas
 boton.addEventListener('click', function(){
-    // 1. Guardamos el texto original para no perderlo
+    
     const textoOriginal = this.innerText;
-
-    // 2. Cambiamos el texto inmediatamente al hacer clic
     this.innerText = "Paleta generada!!!!!";
+
     for (let i = 0; i < paletas.length; i++) {
         // Generamos un color nuevo para cada vuelta del bucle
         let nuevoColor = generarColor();
@@ -77,18 +77,28 @@ boton.addEventListener('click', function(){
         // Aplicamos el color a la paleta actual [i]
         paletas[i].style.backgroundColor = nuevoColor;
         
-        // Opcional: Mostrar el código en el texto del párrafo
+        
+        // Mostrar el código en el texto del párrafo
         let parrafo = paletas[i].querySelector('p');
         if (parrafo) {
-            parrafo.innerText = `Color: ${nuevoColor}`;
+            parrafo.innerText = `${nuevoColor}`;
             parrafo.classList.add('textcolor');
         }
     }
 
-    // 3. Volvemos al texto original después de 2 segundos (2000 ms)
     setTimeout(() => {
         this.innerText = textoOriginal;
     }, 500);
+ 
+});
 
+//LOGICA DE SELECCION DE FORMATOS
+formatos.addEventListener('change', function(){
+    if (this.value === "btn-hsl") {
+      
+    }
+
+    
+    
     
 });
