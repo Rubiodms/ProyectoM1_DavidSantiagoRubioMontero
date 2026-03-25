@@ -23,7 +23,7 @@ seleccionador.addEventListener('change', function() {
             nueva_caja.innerHTML = '<p>HSL:<br>RGBA:</p>';
             let parrafo = nueva_caja.querySelector('p');
             if (parrafo) {
-                parrafo.classList.add('textcolor'); // Cambia por el nombre real de tu clase
+                parrafo.classList.add('textcolor'); 
             }
             nueva_caja.classList.add("caja-color");
             contenedor_cajas.appendChild(nueva_caja);
@@ -42,7 +42,7 @@ seleccionador.addEventListener('change', function() {
             nueva_caja.innerHTML = '<p>HSL:<br>RGBA:</p>';
             let parrafo = nueva_caja.querySelector('p');
             if (parrafo) {
-                parrafo.classList.add('textcolor'); // Cambia por el nombre real de tu clase
+                parrafo.classList.add('textcolor'); 
             }
             nueva_caja.classList.add("caja-color");
             contenedor_cajas.appendChild(nueva_caja);
@@ -65,6 +65,11 @@ function generarColor() {
 
 // 3. Recorremos la colección de cajas
 boton.addEventListener('click', function(){
+    // 1. Guardamos el texto original para no perderlo
+    const textoOriginal = this.innerText;
+
+    // 2. Cambiamos el texto inmediatamente al hacer clic
+    this.innerText = "Paleta generada!!!!!";
     for (let i = 0; i < paletas.length; i++) {
         // Generamos un color nuevo para cada vuelta del bucle
         let nuevoColor = generarColor();
@@ -79,6 +84,11 @@ boton.addEventListener('click', function(){
             parrafo.classList.add('textcolor');
         }
     }
+
+    // 3. Volvemos al texto original después de 2 segundos (2000 ms)
+    setTimeout(() => {
+        this.innerText = textoOriginal;
+    }, 500);
 
     
 });
