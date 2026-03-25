@@ -29,5 +29,12 @@ El proyecto utiliza un sistema de **identidad de color persistente** mediante `d
 
 1. Clona este repositorio:
    ```bash
-   git clone [https://github.com/tu-usuario/generador-paletas.git](https://github.com/tu-usuario/generador-paletas.git)
+   git clone https://github.com/Rubiodms/ProyectoM1_DavidSantiagoRubioMontero.git
    ```
+2. abre la carpeta con visual studio code
+3. abre el archivo index.html da click derecho y selecciona "open with live server"
+
+## 👁️ Visualizacion del proyecto
+
+1. Accede a este Github Page
+   https://rubiodms.github.io/ProyectoM1_DavidSantiagoRubioMontero/
